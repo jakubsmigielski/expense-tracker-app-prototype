@@ -6,14 +6,14 @@ At its core, the application is built upon a well-structured **relational databa
 
 The project stands out with its unique, immersive UI, where all interactions happen on top of a live 3D scene
 
----
+
 
 ### Interactive 3D Experience
 The application greets users with a fully interactive 3D landing page and maintains this animated background throughout the user journey, creating a unique and immersive feel. The background features a central 3D logo and animated particles that subtly react to mouse movements.
 
 *![Home Page Demo](images./ExpenseTracker_demo.gif)*
 
----
+
 
 ##  Features
 
@@ -35,7 +35,7 @@ The application is packed with features to provide a complete personal finance t
 *   **Dynamic Filtering:** Easily filter transactions by month and/or category.
 *   **Light/Dark Mode:** Instantly switch between a light and dark theme for comfortable viewing.
 
----
+
 
 ##  Screenshots
 
