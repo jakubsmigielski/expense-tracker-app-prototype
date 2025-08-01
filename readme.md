@@ -39,7 +39,7 @@ The application is packed with features to provide a complete personal finance t
 
 ##  Screenshots
 
-Here’s a closer look at the application's interface.
+Here’s a example closer look at the application's interface.
 
 ### Main Dashboard 
 *![Dashboard View](images./dashboard.png)*
