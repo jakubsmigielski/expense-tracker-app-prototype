@@ -1,0 +1,72 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <h2 class="mb-4">Add Recurring Expense</h2>
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="POST" action="">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.description.label(class="form-label") }}
+                            {{ form.description(class="form-control") }}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.amount.label(class="form-label") }}
+                                {{ form.amount(class="form-control") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.category.label(class="form-label") }}
+                                {{ form.category(class="form-select") }}
+                            </div>
+                        </div>
+                         <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form.frequency.label(class="form-label") }}
+                                {{ form.frequency(class="form-select") }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form.start_date.label(class="form-label") }}
+                                {{ form.start_date(class="form-control", placeholder="YYYY-MM-DD") }}
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            {{ form.submit(class="btn btn-primary btn-lg") }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <h2 class="mb-4">Your Recurring Expenses</h2>
+            {% if recurring_expenses %}
+                <ul class="list-group">
+                    {% for expense in recurring_expenses %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="mb-1">{{ expense.description }}</h5>
+                                <p class="mb-1">
+                                    <strong>${{ "%.2f"|format(expense.amount) }}</strong> -
+                                    <span class="badge bg-secondary">{{ expense.category }}</span>
+                                </p>
+                                <small class="text-muted">
+                                    Every {{ expense.frequency | replace('monthly', 'month') | replace('weekly', 'week') | replace('yearly', 'year') }} since {{ expense.start_date.strftime('%Y-%m-%d') }}
+                                </small>
+                            </div>
+                            <span class="text-muted"><i class="fas fa-edit"></i> <i class="fas fa-trash"></i></span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <div class="alert alert-info">
+                    No recurring expenses have been defined yet. Add your first one to automate your finances!
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

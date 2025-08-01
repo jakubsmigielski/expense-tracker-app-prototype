@@ -1,0 +1,134 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-0">Welcome, {{ current_user.username }}!</h2>
+        <p class="text-muted mb-0">Here is a summary of your finances.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Transaction History</h5>
+                <form method="GET" action="{{ url_for('wallet') }}" class="row g-3 mb-3 align-items-end">
+                    <div class="col-md-4">
+                        <label for="month" class="form-label">Month</label>
+                        <select name="month" id="month" class="form-select">
+                            <option value="">All</option>
+                            {% for m in range(1, 13) %}
+                            <option value="{{ m }}" {% if selected_month == m %}selected{% endif %}>
+                                {{ ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][m-1] }}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="category" class="form-label">Category</label>
+                        <select name="category" id="category" class="form-select">
+                            <option value="">All</option>
+                            {% for cat in ['Food', 'Transport', 'Entertainment', 'Housing', 'Subscriptions', 'Bills', 'Clothing', 'Other'] %}
+                            <option value="{{ cat }}" {% if selected_category == cat %}selected{% endif %}>{{ cat }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100"><i class="fas fa-filter me-1"></i> Filter</button>
+                    </div>
+                </form>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead><tr><th>Date</th><th>Category</th><th>Amount</th><th>Description</th><th class="text-end">Actions</th></tr></thead>
+                        <tbody>
+                            {% for expense in expenses %}
+                            <tr>
+                                <td>{{ expense.date.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ expense.category }}</td>
+                                <td>${{ "%.2f"|format(expense.amount) }}</td>
+                                <td class="text-muted">{{ expense.description }}</td>
+                                <td class="text-end">
+                                    <a href="{{ url_for('edit_expense', expense_id=expense.id) }}" class="btn btn-sm btn-outline-secondary" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                    <form method="POST" action="{{ url_for('delete_expense', expense_id=expense.id) }}" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure?')" title="Delete"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr><td colspan="5" class="text-center text-muted py-5"><i class="fas fa-folder-open fa-2x mb-2"></i><br>No expenses to display.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer p-3">
+                 <div class="d-flex gap-3">
+                    <a href="{{ url_for('add_expense') }}" class="btn btn-primary flex-grow-1">
+                        <i class="fas fa-plus-circle me-2"></i>Add Transaction
+                    </a>
+                    <a href="{{ url_for('recurring_expenses') }}" class="btn btn-secondary flex-grow-1">
+                        <i class="fas fa-sync-alt me-2"></i>Set Recurring
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Financial Visualizations</h5>
+                <div class="row">
+                    <div class="col-lg-6 mb-4 mb-lg-0"><h6 class="text-center text-muted fw-light">Expenses by Category</h6><div style="position: relative; height:280px"><canvas id="expensesChart" style="cursor: pointer;"></canvas></div></div>
+                    <div class="col-lg-6"><h6 class="text-center text-muted fw-light">Goal Progress</h6><div style="position: relative; height:280px"><canvas id="goalChart"></canvas></div></div>
+                </div>
+                <hr class="my-4">
+                <div class="row">
+                    <div class="col-12"><h6 class="text-center text-muted fw-light">Monthly Expenses in {{ current_year }}</h6><div style="position: relative; height:250px"><canvas id="monthlyChart"></canvas></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Monthly Limit</h5><a href="{{ url_for('set_budget') }}" class="btn btn-sm btn-outline-secondary" title="Set Budget"><i class="fas fa-cog"></i></a></div><hr>
+                {% if budget_limit > 0 %}<p class="text-muted mb-1">Spent this month:</p><h3 class="mb-1 fw-light">${{ "%.2f"|format(current_month_expenses) }} / ${{ "%.2f"|format(budget_limit) }}</h3><div class="progress mb-2" style="height: 20px;"><div class="progress-bar {% if budget_used_percent < 50 %}bg-success{% elif budget_used_percent < 80 %}bg-warning{% else %}bg-danger{% endif %}" role="progressbar" style="width: {{ budget_used_percent }}%;" aria-valuenow="{{ budget_used_percent }}" aria-valuemin="0" aria-valuemax="100">{{ budget_used_percent | round | int }}%</div></div><p class="text-end text-muted mt-0">Remaining: ${{ "%.2f"|format(budget_remaining) }}</p>{% else %}<div class="text-center text-muted py-3"><i class="fas fa-wallet fa-2x mb-2"></i><br><em>No limit set.</em></div>{% endif %}
+            </div>
+        </div>
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center"><h5 class="card-title mb-0">Savings Goal</h5><a href="{{ url_for('set_goal') }}" class="btn btn-sm btn-outline-secondary" title="Set Goal"><i class="fas fa-bullseye"></i></a></div><hr>
+                {% if saving_goal > 0 %}<p class="text-muted mb-1">Saved so far:</p><h3 class="mb-2 fw-light">${{ "%.2f"|format(saving_goal - saving_progress) }} of ${{ "%.2f"|format(saving_goal) }}</h3><p class="text-muted">To go: ${{ "%.2f"|format(saving_progress) }}</p>{% else %}<div class="text-center text-muted py-3"><i class="fas fa-piggy-bank fa-2x mb-2"></i><br><em>No goal set.</em></div>{% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const ctxExpenses = document.getElementById('expensesChart');
+    if (ctxExpenses) {
+        const labels = {{ labels | tojson }};
+        const values = {{ values | tojson }};
+        if (values.length > 0) {
+            new Chart(ctxExpenses, { type: 'doughnut', data: { labels: labels, datasets: [{ label: 'Expenses', data: values, backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff', '#ff9f40', '#c9cbcf'], hoverOffset: 8 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { padding: 15 } }, tooltip: { callbacks: { label: context => `${context.label}: $${context.parsed.toFixed(2)}` } } }, onClick: (event, elements, chart) => { if (elements.length > 0) { const categoryLabel = chart.data.labels[elements[0].index]; const newUrl = `{{ url_for('wallet') }}?category=${encodeURIComponent(categoryLabel)}`; window.location.href = newUrl; } } } });
+        }
+    }
+    const ctxGoal = document.getElementById('goalChart');
+    if (ctxGoal) {
+        const goalTotal = {{ saving_goal | default(0) }};
+        if (goalTotal > 0) {
+            const goalProgress = {{ saving_progress | default(0) }};
+            const goalAchieved = goalTotal - goalProgress;
+            new Chart(ctxGoal, { type: 'doughnut', data: { labels: ['Saved', 'Remaining'], datasets: [{ data: [goalAchieved, goalProgress], backgroundColor: ['#28a745', '#e9ecef'], borderColor: ['#ffffff'], borderWidth: 2, hoverOffset: 4 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '70%', plugins: { legend: { display: false }, tooltip: { callbacks: { label: context => `${context.label}: $${context.parsed.toFixed(2)}` } } } } });
+        }
+    }
+    const ctxMonthly = document.getElementById('monthlyChart');
+    if (ctxMonthly) {
+        const gradientLine = ctxMonthly.getContext('2d').createLinearGradient(0, 0, 0, 250);
+        gradientLine.addColorStop(0, 'rgba(54, 162, 235, 0.6)'); gradientLine.addColorStop(1, 'rgba(54, 162, 235, 0)');
+        new Chart(ctxMonthly, { type: 'line', data: { labels: {{ monthly_labels | tojson }}, datasets: [{ label: 'Monthly Expenses', data: {{ monthly_values | tojson }}, fill: true, backgroundColor: gradientLine, borderColor: '#36a2eb', tension: 0.4, pointBackgroundColor: '#36a2eb', pointRadius: 4, pointHoverRadius: 6 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: context => `$${context.parsed.y.toFixed(2)}` } } }, scales: { y: { beginAtZero: true } } } });
+    }
+});
+</script>
+
+{% endblock %}
