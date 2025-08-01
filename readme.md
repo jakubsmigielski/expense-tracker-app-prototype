@@ -56,7 +56,7 @@ Here’s a example closer look at the application's interface.
 ### Reccuring Expense
 *![Login View](images./Reccuring_Expense.png)*
 
----
+
 
 ##  Technologies & Libraries
 
@@ -78,7 +78,6 @@ This project was built using a modern stack of technologies:
 *   **SweetAlert2:** For elegant, animated pop-up notifications (achievements and system messages).
 *   **Vanilla-Tilt.js:** For the subtle 3D tilt effect on UI panels.
 
----
 ## What I Learned
 
 This educational project was a significant learning experience, bridging the gap between backend logic and advanced frontend visuals. Here are some of the key takeaways:
@@ -94,6 +93,6 @@ This educational project was a significant learning experience, bridging the gap
 *   **UI/UX Design & CSS:** Developed skills in creating a cohesive and modern user interface, implementing a "glassmorphism" aesthetic with `backdrop-filter`, and ensuring a consistent user experience across different pages and in both light and dark modes.
 *   **Project Management & Debugging:** This educational project was a lesson in perseverance. Overcoming numerous technical challenges, from fixing CORS errors to debugging silent JavaScript failures, significantly strengthened my problem-solving skills and taught me the importance of iterative development and testing.
 
-
+---
 **Author:** [Jakub](https://github.com/jakubsmigielski)  
 **Educational portfolio project** 
