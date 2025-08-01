@@ -11,7 +11,7 @@ The project stands out with its unique, immersive UI, where all interactions hap
 ### Interactive 3D Experience
 The application greets users with a fully interactive 3D landing page and maintains this animated background throughout the user journey, creating a unique and immersive feel. The background features a central 3D logo and animated particles that subtly react to mouse movements.
 
-*![Home Page Demo](images/ExpenseTracker_demo.gif)*
+*![Home Page Demo](images./ExpenseTracker_demo.gif)*
 
 ---
 
@@ -42,19 +42,19 @@ The application is packed with features to provide a complete personal finance t
 Here’s a closer look at the application's interface.
 
 ### Main Dashboard 
-*![Dashboard View](images/dashboard.png)*
+*![Dashboard View](images./dashboard.png)*
 
 ### User Profile & Achievements
-*![Profile View](images/profil.png)*
+*![Profile View](images./profil.png)*
 
 ### Login Page
-*![Login View](images/login.png)*
+*![Login View](images./login.png)*
 
 ### Home page
-*![Login View](images/home.png)*
+*![Login View](images./home.png)*
 
 ### Reccuring Expense
-*![Login View](images/Reccuring_Expense.png)*
+*![Login View](images./Reccuring_Expense.png)*
 
 ---
 
