@@ -1,12 +1,6 @@
 # ExpenseTracker 3D
 
-Educational project ExpenseTracker 3D is a modern, visually-rich web application designed to make personal finance management an engaging and intuitive experience. It combines a robust **Python and Flask backend** with a dynamic, **Three.js-powered 3D frontend**, creating a seamless and immersive user journey.
-
-At its core, the application is built upon a well-structured **relational database managed with SQLAlchemy**. The database schema is designed for scalability and data integrity, handling complex relationships between users, their expenses, recurring transactions, and earned achievements. All interactions, from adding a new expense to tracking savings goals, are powered by efficient and reliable database operations.
-
-The project stands out with its unique, immersive UI, where all interactions happen on top of a live 3D scene
-
-
+Educational project ExpenseTracker 3D combines a powerful Python/Flask backend with an immersive Three.js frontend to create an engaging personal finance tool. At its core, a well-structured relational database, managed by SQLAlchemy, handles all user data, transactions, and achievements with efficiency and integrity. The entire UI is rendered over a live 3D scene, offering a unique user experience.
 
 ### Interactive 3D Experience
 The application greets users with a fully interactive 3D landing page and maintains this animated background throughout the user journey, creating a unique and immersive feel. The background features a central 3D logo and animated particles that subtly react to mouse movements.
@@ -22,8 +16,8 @@ The application is packed with features to provide a complete personal finance t
 *   **Secure User Authentication:** Users can register and log in to a secure account. All password data is hashed and safely stored.
 *   **Immersive 3D Background:** A persistent, interactive 3D background provides a unique aesthetic across the entire application, including the login, dashboard, and profile pages.
 *   **Central Hub Navigation:** The home page acts as a beautiful, animated hub for navigating to the main parts of the application.
-*   **Expense Management:** Full CRUD (Create, Read, Update, Delete) functionality for daily expenses.
-*   **Recurring Transactions:** Set up recurring expenses (like rent or subscriptions) that are automatically added to your transaction history.
+*   **Expense Management:** Full CRUD  functionality for daily expenses.
+*   **Recurring Transactions:** Set up recurring expenses that are automatically added to your transaction history.
 *   **Budgeting & Goals:**
     *   **Monthly Limit:** Set a monthly spending limit and track your progress with a visual bar.
     *   **Savings Goal:** Define a savings goal and monitor how close you are to achieving it.
@@ -31,7 +25,7 @@ The application is packed with features to provide a complete personal finance t
     *   Donut chart for expense breakdown by category.
     *   Progress chart for the savings goal.
     *   Line chart showing monthly spending throughout the year.
-*   **Gamification System:** Earn achievements for reaching financial milestones (e.g., adding your first expense, staying within budget). Achievements are celebrated with animated, satisfying pop-up notifications.
+*   **Gamification System:** Earn achievements for reaching financial milestones. Achievements are celebrated with animated, satisfying pop-up notifications.
 *   **Dynamic Filtering:** Easily filter transactions by month and/or category.
 *   **Light/Dark Mode:** Instantly switch between a light and dark theme for comfortable viewing.
 
@@ -63,35 +57,28 @@ Here’s a example closer look at the application's interface.
 This project was built using a modern stack of technologies:
 
 #### Backend
-*   **Python:** The core programming language.
-*   **Flask:** A lightweight WSGI web application framework.
-*   **Flask-SQLAlchemy:** For database interaction and object-relational mapping (ORM) with SQLite.
-*   **Flask-Login:** To manage user sessions and authentication.
-*   **python-dotenv:** To securely manage environment variables.
+*   **Python** 
+*   **Flask** 
+*   **Flask-SQLAlchemy** 
+*   **Flask-Login** 
+*   **python-dotenv**
 
 #### Frontend
-*   **HTML5 & CSS3:** For structure and advanced styling, including glassmorphism effects.
-*   **JavaScript (ES6+):** For client-side interactivity and 3D rendering.
-*   **Three.js:** The core library for creating and displaying animated 3D graphics in the browser (using WebGL).
-*   **Bootstrap 5:** For a responsive layout and pre-built UI components.
-*   **Chart.js:** To create beautiful and informative charts.
-*   **SweetAlert2:** For elegant, animated pop-up notifications (achievements and system messages).
-*   **Vanilla-Tilt.js:** For the subtle 3D tilt effect on UI panels.
+*   **HTML & CSS**
+*   **JavaScript** 
+*   **Three.js** 
+*   **Bootstrap 5**
+*   **Chart.js** 
+*   **SweetAlert2** 
+*   **Vanilla-Tilt.js**
 
 ## What I Learned
 
-This educational project was a significant learning experience, bridging the gap between backend logic and advanced frontend visuals. Here are some of the key takeaways:
-
-*   **Full-Stack Integration:** Deepened my understanding of how to build a complete web application from scratch, connecting a Python/Flask backend with a dynamic, JavaScript-driven frontend.
-*   **Advanced Frontend with Three.js:** Gained hands-on experience in implementing complex 3D graphics in the browser. This included:
-    *   Setting up a scene with cameras, lighting, and a renderer.
-    *   Creating generative 3D objects (like the logo) directly in code.
-    *   Implementing particle systems for atmospheric effects.
-    *   Using post-processing effects like `UnrealBloomPass` to achieve a professional, polished look.
-    *   Handling user interaction (mouse tracking) to create a dynamic and responsive 3D environment.
-*   **Database Management:** Learned to design and manage a multi-table database using Flask-SQLAlchemy, including handling relationships (one-to-many, many-to-many) and cascading deletes for data integrity.
-*   **UI/UX Design & CSS:** Developed skills in creating a cohesive and modern user interface, implementing a "glassmorphism" aesthetic with `backdrop-filter`, and ensuring a consistent user experience across different pages and in both light and dark modes.
-*   **Project Management & Debugging:** This educational project was a lesson in perseverance. Overcoming numerous technical challenges, from fixing CORS errors to debugging silent JavaScript failures, significantly strengthened my problem-solving skills and taught me the importance of iterative development and testing.
+This educational project was a deep dive into full-stack web development, focusing on the synergy between a data-driven backend and an interactive 3D frontend.
+- Full-Stack Architecture: Gained proficiency in connecting a Flask backend with a JavaScript-driven frontend, managing everything from user authentication to API-like data flow.
+- Advanced Three.js Implementation: Mastered key 3D techniques, including generative geometry, particle systems, post-processing effects (UnrealBloomPass), and creating a responsive 3D environment that reacts to user input.
+- Database Design: Acquired practical experience in designing and managing a relational database with Flask-SQLAlchemy, successfully implementing one-to-many and many-to-many relationships.
+- Modern UI/UX: Honed my CSS skills by building a cohesive "glassmorphism" interface with light/dark modes and a focus on user experience.
 
 ---
 **Author:** [Jakub](https://github.com/jakubsmigielski)  
