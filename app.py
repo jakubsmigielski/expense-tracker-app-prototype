@@ -53,9 +53,9 @@ class User(UserMixin, db.Model):
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.Float)
-    category = db.Column(db.String(100))
+    category = db.Column(db.String(150))
     date = db.Column(db.Date)
-    description = db.Column(db.String(200))
+    description = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 class Achievement(db.Model):
@@ -367,4 +367,5 @@ def init_db_command():
     print(">>> The database has been successfully initialized. You can now run the application.")
 
 if __name__ == '__main__':
+
     app.run(debug=True)
