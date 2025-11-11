@@ -52,34 +52,3 @@ Here’s a example closer look at the application's interface.
 
 
 
-##  Technologies & Libraries
-
-This project was built using a modern stack of technologies:
-
-#### Backend
-*   **Python** 
-*   **Flask** 
-*   **Flask-SQLAlchemy** 
-*   **Flask-Login** 
-*   **python-dotenv**
-
-#### Frontend
-*   **HTML & CSS**
-*   **JavaScript** 
-*   **Three.js** 
-*   **Bootstrap 5**
-*   **Chart.js** 
-*   **SweetAlert2** 
-*   **Vanilla-Tilt.js**
-
-## What I Learned
-
-This educational project was a deep dive into full-stack web development, focusing on the synergy between a data-driven backend and an interactive 3D frontend.
-- Full-Stack Architecture: Gained proficiency in connecting a Flask backend with a JavaScript-driven frontend, managing everything from user authentication to API-like data flow.
-- Advanced Three.js Implementation: Mastered key 3D techniques, including generative geometry, particle systems, post-processing effects (UnrealBloomPass), and creating a responsive 3D environment that reacts to user input.
-- Database Design: Acquired practical experience in designing and managing a relational database with Flask-SQLAlchemy, successfully implementing one-to-many and many-to-many relationships.
-- Modern UI/UX: Honed my CSS skills by building a cohesive "glassmorphism" interface with light/dark modes and a focus on user experience.
-
----
-**Author:** [Jakub](https://github.com/jakubsmigielski)  
-**Educational portfolio project** 
