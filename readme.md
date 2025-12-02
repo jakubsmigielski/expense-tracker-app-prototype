@@ -31,24 +31,4 @@ The application is packed with features to provide a complete personal finance t
 
 
 
-##  Screenshots
-
-Here’s a example closer look at the application's interface.
-
-### Main Dashboard 
-*![Dashboard View](images./dashboard.png)*
-
-### User Profile & Achievements
-*![Profile View](images./profil.png)*
-
-### Login Page
-*![Login View](images./login.png)*
-
-### Home page
-*![Login View](images./home.png)*
-
-### Reccuring Expense
-*![Login View](images./Reccuring_Expense.png)*
-
-
 
